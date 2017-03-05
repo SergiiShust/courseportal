@@ -4,12 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 
+import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { CourseDetailComponent } from './shared/course-detail/course-detail.component';
-import { CourseDetailsComponent } from './shared/course-details/course-details.component';
 import { LoginComponent } from './shared/login/login.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { SearchComponent } from './shared/search/search.component';
@@ -23,7 +23,6 @@ import {NoContentComponent} from "./no-content/no-content.component";
     HeaderComponent,
     FooterComponent,
     CourseDetailComponent,
-    CourseDetailsComponent,
     LoginComponent,
     MenuComponent,
     SearchComponent,
@@ -35,6 +34,7 @@ import {NoContentComponent} from "./no-content/no-content.component";
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, {useHash: true, preloadingStrategy: PreloadAllModules}),
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
