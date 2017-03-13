@@ -7,12 +7,12 @@ import { RouterModule, PreloadAllModules } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { CourseDetailComponent } from './shared/course-detail/course-detail.component';
-import { LoginComponent } from './shared/login/login.component';
-import { MenuComponent } from './shared/menu/menu.component';
-import { SearchComponent } from './shared/search/search.component';
+import { HeaderComponent } from './common/header/header.component';
+import { FooterComponent } from './common/footer/footer.component';
+import { CourseDetailComponent } from './home/course-detail/course-detail.component';
+import { LoginComponent } from './common/login/login.component';
+import { MenuComponent } from './common/menu/menu.component';
+import { SearchComponent } from './common/search/search.component';
 import { HomeComponent } from './home/home.component';
 import {ROUTES} from "./app.routes";
 import {NoContentComponent} from "./no-content/no-content.component";
