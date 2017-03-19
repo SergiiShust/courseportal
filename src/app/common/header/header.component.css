@@ -1,0 +1,10 @@
+.fill-remaining-space {
+flex: 1 1 auto;
+}
+
+.logo {
+  background-image: url('/assets/images/course-catalog.png');
+  height: 50px;
+  width: 50px;
+  background-size: 50px;
+}
