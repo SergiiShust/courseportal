@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'trainme-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  templateUrl: 'menu.component.html',
+  styleUrls: ['menu.component.css']
 })
 export class MenuComponent implements OnInit {
 

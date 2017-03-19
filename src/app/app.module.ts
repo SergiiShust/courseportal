@@ -7,12 +7,12 @@ import { RouterModule, PreloadAllModules } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './common/header/header.component';
-import { FooterComponent } from './common/footer/footer.component';
+import { HeaderComponent } from './common/components/header/header.component';
+import { FooterComponent } from './common/components/footer/footer.component';
 import { CourseDetailComponent } from './home/course-detail/course-detail.component';
-import { LoginComponent } from './common/login/login.component';
-import { MenuComponent } from './common/menu/menu.component';
-import { SearchComponent } from './common/search/search.component';
+import { LoginComponent } from './common/components/login/login.component';
+import { MenuComponent } from './common/components/menu/menu.component';
+import { SearchComponent } from './common/components/search/search.component';
 import { HomeComponent } from './home/home.component';
 import {ROUTES} from "./app.routes";
 import {NoContentComponent} from "./no-content/no-content.component";
@@ -29,7 +29,7 @@ import { CourseDeleteConfirmationComponent } from './home/course-delete-confirma
     SearchComponent,
     HomeComponent,
     NoContentComponent,
-    CourseDeleteConfirmationComponent
+    CourseDeleteConfirmationComponent,
   ],
   imports: [
     BrowserModule,
