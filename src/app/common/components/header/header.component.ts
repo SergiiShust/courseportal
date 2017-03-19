@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthorizationService} from "../../services/authorization.service";
 
 @Component({
   selector: 'trainme-header',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authorizationService: AuthorizationService) {
+  }
+
+  //isAuthenticated: boolean = false;
 
   ngOnInit() {
+   // this.isAuthenticated = this.authorizationService.isAuthenticated()
   }
 
 }
