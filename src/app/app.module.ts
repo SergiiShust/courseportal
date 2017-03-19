@@ -16,6 +16,7 @@ import { SearchComponent } from './common/search/search.component';
 import { HomeComponent } from './home/home.component';
 import {ROUTES} from "./app.routes";
 import {NoContentComponent} from "./no-content/no-content.component";
+import { CourseDeleteConfirmationComponent } from './home/course-delete-confirmation/course-delete-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {NoContentComponent} from "./no-content/no-content.component";
     MenuComponent,
     SearchComponent,
     HomeComponent,
-    NoContentComponent
+    NoContentComponent,
+    CourseDeleteConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import {NoContentComponent} from "./no-content/no-content.component";
     MaterialModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CourseDeleteConfirmationComponent]
 })
 export class AppModule {
 }
