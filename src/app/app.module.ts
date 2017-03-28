@@ -7,15 +7,18 @@ import { RouterModule, PreloadAllModules } from '@angular/router';
 import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './common/header/header.component';
-import { FooterComponent } from './common/footer/footer.component';
+import { HeaderComponent } from './common/components/header/header.component';
+import { FooterComponent } from './common/components/footer/footer.component';
 import { CourseDetailComponent } from './home/course-detail/course-detail.component';
-import { LoginComponent } from './common/login/login.component';
-import { MenuComponent } from './common/menu/menu.component';
-import { SearchComponent } from './common/search/search.component';
+import { LoginMenuComponent } from './common/components/login-menu/login-menu.component';
+import { MenuComponent } from './common/components/menu/menu.component';
+import { SearchComponent } from './common/components/search/search.component';
 import { HomeComponent } from './home/home.component';
 import {ROUTES} from "./app.routes";
 import {NoContentComponent} from "./no-content/no-content.component";
+import { CourseDeleteConfirmationComponent } from './home/course-delete-confirmation/course-delete-confirmation.component';
+import {AuthorizationService} from "./common/services/authorization.service";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,11 +26,13 @@ import {NoContentComponent} from "./no-content/no-content.component";
     HeaderComponent,
     FooterComponent,
     CourseDetailComponent,
-    LoginComponent,
+    LoginMenuComponent,
     MenuComponent,
     SearchComponent,
     HomeComponent,
-    NoContentComponent
+    NoContentComponent,
+    CourseDeleteConfirmationComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,8 +41,9 @@ import {NoContentComponent} from "./no-content/no-content.component";
     RouterModule.forRoot(ROUTES, {useHash: true, preloadingStrategy: PreloadAllModules}),
     MaterialModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthorizationService],
+  bootstrap: [AppComponent],
+  entryComponents: [CourseDeleteConfirmationComponent]
 })
 export class AppModule {
 }

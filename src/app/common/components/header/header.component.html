@@ -1,8 +1,10 @@
 <md-toolbar color="primary">
   <div class="logo" ></div>
 
+  <span *ngIf="authorizationService.isAuthenticated()">breadcrumbs</span>
+
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
 
-  <trainme-login></trainme-login>
+  <trainme-login-menu></trainme-login-menu>
 </md-toolbar>

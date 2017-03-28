@@ -12,14 +12,15 @@ export class CourseDetailComponent implements OnInit {
   public course:Course;
 
   @Output()
-  public deleteCourse: EventEmitter<Course> = new EventEmitter();
+  public deleteCourse:EventEmitter<Course> = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-  onDeleteHandler(course:Course){
+  onDeleteHandler(course:Course) {
     this.deleteCourse.emit(course);
   }
 }
