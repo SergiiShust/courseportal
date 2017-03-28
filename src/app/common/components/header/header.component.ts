@@ -11,10 +11,14 @@ export class HeaderComponent implements OnInit {
   constructor(private authorizationService: AuthorizationService) {
   }
 
-  //isAuthenticated: boolean = false;
+  isAuthenticated: boolean = false;
 
   ngOnInit() {
-   // this.isAuthenticated = this.authorizationService.isAuthenticated()
+    this.authorizationService.userInfo.subscribe(()=>{
+      this.isAuthenticated = this.authorizationService.isAuthenticated()
+    });
+
+    this.isAuthenticated = this.authorizationService.isAuthenticated();
   }
 
 }

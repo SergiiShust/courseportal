@@ -8,10 +8,17 @@ import {AuthorizationService} from "../../services/authorization.service";
 })
 export class LoginMenuComponent implements OnInit {
 
+  isAuthenticated: boolean = false;
+
   constructor(private authorizationService: AuthorizationService) {
   }
 
   ngOnInit() {
+    this.authorizationService.userInfo.subscribe(() => {
+      this.isAuthenticated = this.authorizationService.isAuthenticated();
+    });
+
+    this.isAuthenticated = this.authorizationService.isAuthenticated();
   }
 
   logout() {
