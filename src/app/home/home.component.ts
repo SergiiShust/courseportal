@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Course} from "../common/entities/course";
 import {CoursesService} from "./services/courses.service";
 import {CourseDeleteConfirmationComponent} from "./course-delete-confirmation/course-delete-confirmation.component";
@@ -9,7 +9,8 @@ import {OverlayService} from "../common/components/overlay/overlay-service/overl
   selector: 'trainme-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [CoursesService]
+  providers: [CoursesService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
 

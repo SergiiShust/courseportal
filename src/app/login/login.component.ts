@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {AuthorizationService} from "../common/services/authorization.service";
 import {Router} from "@angular/router";
 import {OverlayService} from "../common/components/overlay/overlay-service/overlay-service.service";
@@ -6,7 +6,8 @@ import {OverlayService} from "../common/components/overlay/overlay-service/overl
 @Component({
   selector: 'trainme-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
 
