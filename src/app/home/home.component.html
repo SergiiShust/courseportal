@@ -1,6 +1,6 @@
 <md-grid-list cols="3" rowHeight="50">
   <md-grid-tile [colspan]="2">
-    <trainme-search></trainme-search>
+    <trainme-search (searchTextOutput)="newSearchText($event)"></trainme-search>
   </md-grid-tile>
   <md-grid-tile [colspan]="1">
     <a md-raised-button>Add course</a>
@@ -9,9 +9,9 @@
 
 <div>
   <trainme-course-detail
-    *ngFor="let course of courses| orderBy : 'createdDate'"
+    *ngFor="let course of coursesView | orderBy : 'createdDate'"
     [trainmeCourseFresh]="course.createdDate"
     (deleteCourse)="courseDeleteHandler($event)"
     [course]="course"></trainme-course-detail>
 </div>
-<md-card *ngIf="courses.length == 0">No data. Feel free to add new course.</md-card>
+<md-card *ngIf="coursesView.length == 0">No data. Feel free to add new course.</md-card>

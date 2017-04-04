@@ -24,6 +24,7 @@ import {OverlayService} from "./common/components/overlay/overlay-service/overla
 import {CourseFreshDirective} from "./home/directives/course-fresh.directive";
 import { DurationPipe } from './home/pipes/duration.pipe';
 import { OrderByPipe } from './common/pipes/order-by.pipe';
+import {FilterByPipe} from "./common/pipes/filter-by.pipe";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { OrderByPipe } from './common/pipes/order-by.pipe';
     CourseFreshDirective,
     DurationPipe,
     OrderByPipe,
+    FilterByPipe,
   ],
   imports: [
     BrowserModule,
