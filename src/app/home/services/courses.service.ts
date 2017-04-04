@@ -36,31 +36,31 @@ export class CoursesService {
   courses = Array<Course>({
     "id": "6ea5b973-b86c-491d-b345-0b8b03b1d42d",
     "title": "Community Outreach Specialist",
-    "createdDate": "2016-04-25T15:58:48Z",
+    "createdDate": "2017-04-01T08:15:30-05:00",
     "duration": 143,
     "description": "Open-architected exuding framework"
   }, {
     "id": "6b8101fa-2336-468d-aa5b-58da60529c41",
     "title": "Account Coordinator",
-    "createdDate": "2016-10-17T23:53:59Z",
+    "createdDate": "2017-04-03T08:15:30-05:00",
     "duration": 144,
     "description": "Total encompassing structure"
   }, {
     "id": "816e28b3-a1d6-46d7-bc84-e6e5d976fc1b",
     "title": "Nurse",
-    "createdDate": "2016-03-26T03:53:03Z",
+    "createdDate": "2017-03-01T08:15:30-05:00",
     "duration": 101,
     "description": "Open-source systematic secured line"
   }, {
     "id": "9aa3136e-e6c1-4782-aaf6-349547126fc8",
     "title": "Quality Engineer",
-    "createdDate": "2016-06-06T20:29:24Z",
+    "createdDate": "2017-04-01T08:15:30-05:00",
     "duration": 191,
     "description": "User-friendly solution-oriented throughput"
   }, {
     "id": "d3a2d3bc-d51c-4b89-8e97-2bed1cc9278e",
     "title": "Programmer Analyst III",
-    "createdDate": "2016-06-13T23:51:18Z",
+    "createdDate": "2017-01-01T08:15:30-05:00",
     "duration": 159,
     "description": "Self-enabling full-range instruction set"
   });

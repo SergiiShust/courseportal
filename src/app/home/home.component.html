@@ -7,5 +7,8 @@
   </md-grid-tile>
 </md-grid-list>
 
-<trainme-course-detail (deleteCourse)="courseDeleteHandler($event)" [course]="course" *ngFor="let course of courses"></trainme-course-detail>
-
+<div *ngFor="let course of courses">
+  <trainme-course-detail [trainmeCourseFresh]="course.createdDate"
+                         (deleteCourse)="courseDeleteHandler($event)"
+                         [course]="course"></trainme-course-detail>
+</div>
