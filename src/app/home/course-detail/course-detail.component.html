@@ -3,7 +3,7 @@
     <p>{{course?.title | uppercase}}</p>
   </md-grid-tile>
   <md-grid-tile [colspan]="1">
-    <p>{{course?.duration}} min</p>
+    <p>{{course?.duration | duration}}</p>
     <p *ngIf="course.topRated">
       <md-icon>star</md-icon>
     </p>

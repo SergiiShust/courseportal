@@ -22,6 +22,7 @@ import {LoginComponent} from './login/login.component';
 import {OverlayComponent} from './common/components/overlay/overlay.component';
 import {OverlayService} from "./common/components/overlay/overlay-service/overlay-service.service";
 import {CourseFreshDirective} from "./home/directives/course-fresh.directive";
+import { DurationPipe } from './home/pipes/duration.pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {CourseFreshDirective} from "./home/directives/course-fresh.directive";
     LoginComponent,
     OverlayComponent,
     CourseFreshDirective,
+    DurationPipe,
   ],
   imports: [
     BrowserModule,
