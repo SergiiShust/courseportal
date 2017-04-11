@@ -5,6 +5,9 @@ import {CourseDeleteConfirmationComponent} from "./course-delete-confirmation/co
 import {MdDialog} from "@angular/material";
 import {OverlayService} from "../common/components/overlay/overlay-service/overlay-service.service";
 import {FilterByPipe} from "../common/pipes/filter-by.pipe";
+import * as moment from 'moment';
+
+const FORTEEN_DAYS: number = 14 * 24 * 60 * 60 * 1000;
 
 @Component({
   selector: 'trainme-home',
@@ -57,7 +60,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.coursesService.getAll()
+    let subscription = this.coursesService.getAll()
+      .map((courses) => courses.filter(course => new Date(course.date).getTime() < Date.now() - FORTEEN_DAYS))
+      .finally(() => {
+        subscription.unsubscribe()
+      })
       .subscribe(courses => this.courses = courses);
   }
 }
