@@ -6,6 +6,7 @@ import {MdDialog} from "@angular/material";
 import {OverlayService} from "../common/components/overlay/overlay-service/overlay-service.service";
 import {FilterByPipe} from "../common/pipes/filter-by.pipe";
 import * as moment from 'moment';
+import {Router} from "@angular/router";
 
 const FORTEEN_DAYS: number = 14 * 24 * 60 * 60 * 1000;
 
@@ -23,7 +24,8 @@ export class HomeComponent implements OnInit {
   constructor(private coursesService: CoursesService,
               private overlayServiceService: OverlayService,
               private dialog: MdDialog,
-              private filterByPipe: FilterByPipe) {
+              private filterByPipe: FilterByPipe,
+              private router: Router) {
   }
 
   searchText: string = '';
@@ -58,6 +60,10 @@ export class HomeComponent implements OnInit {
 
   newSearchText(search) {
     this.searchText = search;
+  }
+
+  addcourse() {
+    this.router.navigate(['/addcourse']);
   }
 
   ngOnInit() {
