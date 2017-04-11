@@ -21,6 +21,10 @@ import {AuthorizationService} from "./common/services/authorization.service";
 import {LoginComponent} from './login/login.component';
 import {OverlayComponent} from './common/components/overlay/overlay.component';
 import {OverlayService} from "./common/components/overlay/overlay-service/overlay-service.service";
+import {CourseFreshDirective} from "./home/directives/course-fresh.directive";
+import { DurationPipe } from './home/pipes/duration.pipe';
+import { OrderByPipe } from './common/pipes/order-by.pipe';
+import {FilterByPipe} from "./common/pipes/filter-by.pipe";
 
 @NgModule({
   declarations: [
@@ -36,6 +40,10 @@ import {OverlayService} from "./common/components/overlay/overlay-service/overla
     CourseDeleteConfirmationComponent,
     LoginComponent,
     OverlayComponent,
+    CourseFreshDirective,
+    DurationPipe,
+    OrderByPipe,
+    FilterByPipe,
   ],
   imports: [
     BrowserModule,

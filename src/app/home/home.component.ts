@@ -4,12 +4,13 @@ import {CoursesService} from "./services/courses.service";
 import {CourseDeleteConfirmationComponent} from "./course-delete-confirmation/course-delete-confirmation.component";
 import {MdDialog} from "@angular/material";
 import {OverlayService} from "../common/components/overlay/overlay-service/overlay-service.service";
+import {FilterByPipe} from "../common/pipes/filter-by.pipe";
 
 @Component({
   selector: 'trainme-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [CoursesService],
+  providers: [CoursesService, FilterByPipe],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
@@ -18,7 +19,19 @@ export class HomeComponent implements OnInit {
 
   constructor(private coursesService: CoursesService,
               private overlayServiceService: OverlayService,
-              private dialog: MdDialog) {
+              private dialog: MdDialog,
+              private filterByPipe: FilterByPipe) {
+  }
+
+  searchText: string = '';
+
+  get coursesView(): Array<Course> {
+    if (this.searchText) {
+      let result = <Array<Course>>this.filterByPipe.transform(this.courses, ['title', this.searchText]);
+      debugger;
+      return result;
+    }
+    return this.courses;
   }
 
   courseDeleteHandler(course: Course) {
@@ -37,6 +50,10 @@ export class HomeComponent implements OnInit {
             .subscribe(() => this.courses.slice(this.courses.indexOf(course), 1));
         }
       });
+  }
+
+  newSearchText(search) {
+    this.searchText = search;
   }
 
   ngOnInit() {

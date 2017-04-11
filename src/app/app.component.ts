@@ -16,11 +16,11 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this._ngZone.onUnstable.subscribe(()=>{
       this._startTime = Date.now();
-      console.log(`Started onUnstable`)
+     // console.log(`Started onUnstable`)
     });
 
     this._ngZone.onStable.subscribe(()=>{
-     console.log(`Finished. onStable. Took ${Date.now() - this._startTime} miliseconds`);
+    // console.log(`Finished. onStable. Took ${Date.now() - this._startTime} miliseconds`);
     });
   }
 }

@@ -1,12 +1,15 @@
-<md-grid-list cols="5" rowHeight="5:1">
+<md-grid-list cols="5" rowHeight="5:1" [ngClass]="{'top-rated-detail': course.topRated}">
   <md-grid-tile [colspan]="1">
-    <p>{{course?.title}}</p>
+    <p>{{course?.title | uppercase}}</p>
   </md-grid-tile>
   <md-grid-tile [colspan]="1">
-    <p>{{course?.duration}} min</p>
+    <p>{{course?.duration | duration}}</p>
+    <p *ngIf="course.topRated">
+      <md-icon>star</md-icon>
+    </p>
   </md-grid-tile>
   <md-grid-tile [colspan]="1">
-    {{course?.createdDate }}
+    {{course?.createdDate | date:'medium' }}
   </md-grid-tile>
   <md-grid-tile [colspan]="1" [rowspan]="2">
     <md-list>
