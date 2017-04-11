@@ -44,10 +44,11 @@ export class HomeComponent implements OnInit {
       .subscribe(result => {
         if (result) {
           this.overlayServiceService.show();
-          this.coursesService
+          let subscription = this.coursesService
             .delete(course)
             .delay(1000)
             .finally(() => {
+              subscription.unsubscribe();
               this.overlayServiceService.hide()
             })
             .subscribe(() => this.courses.slice(this.courses.indexOf(course), 1));
