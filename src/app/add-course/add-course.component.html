@@ -1,0 +1,35 @@
+<md-grid-list cols="3">
+  <md-grid-tile>
+  </md-grid-tile>
+  <md-grid-tile>
+    <form [formGroup]="formModel">
+      <md-list>
+        <md-list-item>
+          <md-input-container>
+            <input mdInput type="input" placeholder="Title" formControlName="title">
+          </md-input-container>
+        </md-list-item>
+        <md-list-item>
+          <md-input-container>
+            <textarea mdInput type="input" placeholder="Description" formControlName="description"></textarea>
+          </md-input-container>
+        </md-list-item>
+        <md-list-item>
+          <md-input-container>
+            <input mdInput type="input" placeholder="Date" formControlName="date"/>
+          </md-input-container>
+        </md-list-item>
+        <md-list-item>
+          <md-input-container>
+            <input mdInput type="number" placeholder="Duration {{formModel.controls['duration'].value | duration}}" formControlName="duration"/>
+          </md-input-container>
+        </md-list-item>
+        <md-list-item>
+          <a md-raised-button (click)="save()">Save</a><a md-raised-button (click)="cancel()">Cancel</a>
+        </md-list-item>
+      </md-list>
+    </form>
+  </md-grid-tile>
+  <md-grid-tile>
+  </md-grid-tile>
+</md-grid-list>

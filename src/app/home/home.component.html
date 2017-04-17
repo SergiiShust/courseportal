@@ -3,14 +3,14 @@
     <trainme-search (searchTextOutput)="newSearchText($event)"></trainme-search>
   </md-grid-tile>
   <md-grid-tile [colspan]="1">
-    <a md-raised-button>Add course</a>
+    <a md-raised-button (click)="addcourse()">Add course</a>
   </md-grid-tile>
 </md-grid-list>
 
 <div>
   <trainme-course-detail
-    *ngFor="let course of coursesView | orderBy : 'createdDate'"
-    [trainmeCourseFresh]="course.createdDate"
+    *ngFor="let course of coursesView | orderBy : 'date'"
+    [trainmeCourseFresh]="course.date"
     (deleteCourse)="courseDeleteHandler($event)"
     [course]="course"></trainme-course-detail>
 </div>

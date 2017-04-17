@@ -5,6 +5,10 @@ import {CourseDeleteConfirmationComponent} from "./course-delete-confirmation/co
 import {MdDialog} from "@angular/material";
 import {OverlayService} from "../common/components/overlay/overlay-service/overlay-service.service";
 import {FilterByPipe} from "../common/pipes/filter-by.pipe";
+import * as moment from 'moment';
+import {Router} from "@angular/router";
+
+const FORTEEN_DAYS: number = 14 * 24 * 60 * 60 * 1000;
 
 @Component({
   selector: 'trainme-home',
@@ -20,7 +24,8 @@ export class HomeComponent implements OnInit {
   constructor(private coursesService: CoursesService,
               private overlayServiceService: OverlayService,
               private dialog: MdDialog,
-              private filterByPipe: FilterByPipe) {
+              private filterByPipe: FilterByPipe,
+              private router: Router) {
   }
 
   searchText: string = '';
@@ -41,10 +46,11 @@ export class HomeComponent implements OnInit {
       .subscribe(result => {
         if (result) {
           this.overlayServiceService.show();
-          this.coursesService
+          let subscription = this.coursesService
             .delete(course)
             .delay(1000)
             .finally(() => {
+              subscription.unsubscribe();
               this.overlayServiceService.hide()
             })
             .subscribe(() => this.courses.slice(this.courses.indexOf(course), 1));
@@ -56,8 +62,16 @@ export class HomeComponent implements OnInit {
     this.searchText = search;
   }
 
+  addcourse() {
+    this.router.navigate(['/addcourse']);
+  }
+
   ngOnInit() {
-    this.coursesService.getAll()
+    let subscription = this.coursesService.getAll()
+      .map((courses) => courses.filter(course => new Date(course.date).getTime() < Date.now() - FORTEEN_DAYS))
+      .finally(() => {
+        subscription.unsubscribe()
+      })
       .subscribe(courses => this.courses = courses);
   }
 }

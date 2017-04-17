@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {RouterModule, PreloadAllModules} from '@angular/router';
 
@@ -22,9 +22,10 @@ import {LoginComponent} from './login/login.component';
 import {OverlayComponent} from './common/components/overlay/overlay.component';
 import {OverlayService} from "./common/components/overlay/overlay-service/overlay-service.service";
 import {CourseFreshDirective} from "./home/directives/course-fresh.directive";
-import { DurationPipe } from './home/pipes/duration.pipe';
-import { OrderByPipe } from './common/pipes/order-by.pipe';
+import {OrderByPipe} from './common/pipes/order-by.pipe';
 import {FilterByPipe} from "./common/pipes/filter-by.pipe";
+import {AddCourseComponent} from './add-course/add-course.component';
+import {DurationPipe} from "./common/pipes/duration.pipe";
 
 @NgModule({
   declarations: [
@@ -44,13 +45,15 @@ import {FilterByPipe} from "./common/pipes/filter-by.pipe";
     DurationPipe,
     OrderByPipe,
     FilterByPipe,
+    AddCourseComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, {useHash: true, preloadingStrategy: PreloadAllModules}),
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [
     AuthorizationService,
