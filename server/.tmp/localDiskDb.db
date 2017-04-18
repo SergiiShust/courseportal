@@ -1,0 +1,44 @@
+{
+  "data": {
+    "course": [
+      {
+        "createdAt": "2017-04-18T07:38:09.363Z",
+        "updatedAt": "2017-04-18T07:38:09.363Z",
+        "id": 1
+      }
+    ]
+  },
+  "schema": {
+    "course": {
+      "title": {
+        "type": "text"
+      },
+      "date": {
+        "type": "date"
+      },
+      "duration": {
+        "type": "integer"
+      },
+      "topRated": {
+        "type": "boolean"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    }
+  },
+  "counters": {
+    "course": {
+      "id": 1
+    }
+  }
+}
