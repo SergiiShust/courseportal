@@ -4,8 +4,7 @@ import {AuthorizationService} from "../../services/authorization.service";
 @Component({
   selector: 'trainme-header',
   templateUrl: 'header.component.html',
-  styleUrls: ['header.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['header.component.css']
 })
 export class HeaderComponent implements OnInit {
 

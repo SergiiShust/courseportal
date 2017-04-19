@@ -9,7 +9,7 @@
 
 <div>
   <trainme-course-detail
-    *ngFor="let course of coursesView | orderBy : 'date'"
+    *ngFor="let course of coursesView "
     [trainmeCourseFresh]="course.date"
     (deleteCourse)="courseDeleteHandler($event)"
     [course]="course"></trainme-course-detail>

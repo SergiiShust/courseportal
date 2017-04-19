@@ -14,12 +14,11 @@ const FORTEEN_DAYS: number = 14 * 24 * 60 * 60 * 1000;
   selector: 'trainme-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [CoursesService, FilterByPipe],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  providers: [CoursesService, FilterByPipe]
 })
 export class HomeComponent implements OnInit {
 
-  courses: Array<Course>;
+  courses: Array<Course> = [];
 
   constructor(private coursesService: CoursesService,
               private overlayServiceService: OverlayService,

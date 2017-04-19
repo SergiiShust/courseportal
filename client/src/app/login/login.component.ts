@@ -6,8 +6,7 @@ import {OverlayService} from "../common/components/overlay/overlay-service/overl
 @Component({
   selector: 'trainme-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
