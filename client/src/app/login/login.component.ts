@@ -15,14 +15,15 @@ export class LoginComponent implements OnInit {
               private router: Router) {
   }
 
-  userName: string;
+  email: string;
+  password: string;
 
   ngOnInit() {
   }
 
   login() {
     this.authorizationService
-      .login({name: this.userName})
+      .login({email: this.email, password: this.password})
       .do(() => {
         this.overlayService.show();
       })

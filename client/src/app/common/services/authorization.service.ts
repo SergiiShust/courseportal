@@ -2,6 +2,7 @@ import {Injectable, OnInit} from '@angular/core';
 import {User} from "../entities/user";
 import {Observable, Subject} from "rxjs";
 import {OverlayService} from "../components/overlay/overlay-service/overlay-service.service";
+import {Http} from "@angular/http";
 
 const USER_TOKEN = 'train-me-user-token';
 
@@ -13,34 +14,36 @@ interface UserToken {
 export class AuthorizationService implements OnInit {
 
   userInfo: Subject<User> = new Subject();
+  currentUser: User = null;
 
-  constructor() {
+  constructor(private http: Http) {
   }
 
   ngOnInit(): void {
   }
 
   login(user: User): Observable<User> {
-    let userToken: UserToken = {};
-    user.token = Date.now();
-    userToken[user.name] = user;
-    localStorage.setItem(USER_TOKEN, JSON.stringify(userToken));
     this.userInfo.next();
-    return Observable.of(user);
+    return this.http
+      .post('/login', {email: user.email, password: user.password})
+      .map(responce => new User(user.email, user.password))
+      .do(res => this.currentUser = res);
   }
 
   logout(): Observable<User> {
-    let user = this.getUserInfo();
-    localStorage.removeItem(USER_TOKEN);
+
     this.userInfo.next();
-    return Observable.of(user);
+    return this.http
+      .get('/logout')
+      .map(responce => responce.json())
+      .do(res => this.currentUser = null);
   }
 
   isAuthenticated(): boolean {
-    return !!localStorage.getItem(USER_TOKEN);
+    return this.currentUser != null;
   }
 
   getUserInfo(): User {
-    return JSON.parse(localStorage.getItem(USER_TOKEN));
+    return this.currentUser;
   }
 }

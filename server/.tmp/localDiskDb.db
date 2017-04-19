@@ -91,6 +91,16 @@
         "description": "Self-enabling full-range instruction set",
         "isTopRated": false
       }
+    ],
+    "user": [
+      {
+        "name": "admin",
+        "email": "admin@admin.com",
+        "password": "admin",
+        "createdAt": "2017-04-19T21:37:02.113Z",
+        "updatedAt": "2017-04-19T21:37:02.113Z",
+        "id": 1
+      }
     ]
   },
   "schema": {
@@ -119,11 +129,34 @@
       "updatedAt": {
         "type": "datetime"
       }
+    },
+    "user": {
+      "email": {
+        "type": "string"
+      },
+      "password": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
     }
   },
   "counters": {
     "course": {
       "id": 9
+    },
+    "user": {
+      "id": 1
     }
   }
 }
