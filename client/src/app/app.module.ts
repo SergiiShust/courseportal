@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {HttpModule, RequestOptions, XHRBackend} from '@angular/http';
 import {RouterModule, PreloadAllModules} from '@angular/router';
 
 import {MaterialModule} from '@angular/material';
@@ -26,6 +26,7 @@ import {OrderByPipe} from './common/pipes/order-by.pipe';
 import {FilterByPipe} from "./common/pipes/filter-by.pipe";
 import {AddCourseComponent} from './add-course/add-course.component';
 import {DurationPipe} from "./common/pipes/duration.pipe";
+import {AuthorizedHttpService} from "./common/services/authorize-http.service";
 
 @NgModule({
   declarations: [
@@ -57,7 +58,14 @@ import {DurationPipe} from "./common/pipes/duration.pipe";
   ],
   providers: [
     AuthorizationService,
-    OverlayService
+    OverlayService,
+    {
+      provide: AuthorizedHttpService,
+      useFactory: (backend: XHRBackend, options: RequestOptions) => {
+        return new AuthorizedHttpService(backend, options);
+      },
+      deps: [XHRBackend, RequestOptions]
+    }
   ],
   bootstrap: [AppComponent],
   entryComponents: [CourseDeleteConfirmationComponent]

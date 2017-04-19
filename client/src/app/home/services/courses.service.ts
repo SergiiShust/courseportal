@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Course} from "../../common/entities/course";
 import {Observable} from "rxjs";
 import {Http, URLSearchParams} from "@angular/http";
+import {AuthorizedHttpService} from "../../common/services/authorize-http.service";
 
 export interface ICourseOptions {
   skip: number;
@@ -12,7 +13,7 @@ export interface ICourseOptions {
 @Injectable()
 export class CoursesService {
 
-  constructor(private http: Http) {
+  constructor(private http: AuthorizedHttpService) {
   }
 
   getAll(options: ICourseOptions): Observable<Course[]> {

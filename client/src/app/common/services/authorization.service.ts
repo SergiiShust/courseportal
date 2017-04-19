@@ -3,8 +3,9 @@ import {User} from "../entities/user";
 import {Observable, Subject} from "rxjs";
 import {OverlayService} from "../components/overlay/overlay-service/overlay-service.service";
 import {Http} from "@angular/http";
+import {AuthorizedHttpService} from "./authorize-http.service";
 
-const USER_TOKEN = 'train-me-user-token';
+const USER_TOKEN = 'auth_token';
 
 interface UserToken {
   [key: string]: User;
@@ -16,7 +17,7 @@ export class AuthorizationService implements OnInit {
   userInfo: Subject<User> = new Subject();
   currentUser: User = null;
 
-  constructor(private http: Http) {
+  constructor(private http: AuthorizedHttpService) {
   }
 
   ngOnInit(): void {
@@ -27,7 +28,10 @@ export class AuthorizationService implements OnInit {
     return this.http
       .post('/login', {email: user.email, password: user.password})
       .map(responce => new User(user.email, user.password))
-      .do(res => this.currentUser = res);
+      .do(res => {
+        this.currentUser = res;
+        localStorage.setItem(USER_TOKEN, 'askdjasd-dsfsdfdsf-dsfsdfsdf-sdfsdfsdf')
+      });
   }
 
   logout(): Observable<User> {
@@ -36,7 +40,10 @@ export class AuthorizationService implements OnInit {
     return this.http
       .get('/logout')
       .map(responce => responce.json())
-      .do(res => this.currentUser = null);
+      .do(res => {
+        this.currentUser = null;
+        localStorage.removeItem(USER_TOKEN);
+      });
   }
 
   isAuthenticated(): boolean {
