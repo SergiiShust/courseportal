@@ -47,12 +47,13 @@ export class HomeComponent implements OnInit {
           this.overlayServiceService.show();
           let subscription = this.coursesService
             .delete(course)
-            .delay(1000)
             .finally(() => {
               subscription.unsubscribe();
               this.overlayServiceService.hide()
             })
-            .subscribe(() => this.courses.slice(this.courses.indexOf(course), 1));
+            .subscribe(() => {
+              this.courses.splice(this.courses.indexOf(course), 1)
+            });
         }
       });
   }
