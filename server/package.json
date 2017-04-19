@@ -25,7 +25,8 @@
   },
   "scripts": {
     "debug": "node debug app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "sails":"sails lift --port 3001"
   },
   "main": "app.js",
   "repository": {
