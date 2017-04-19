@@ -1,7 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Course} from "../../common/entities/course";
 import {Observable} from "rxjs";
-import {Http} from "@angular/http";
+import {Http, URLSearchParams} from "@angular/http";
+
+export interface ICourseOptions {
+  skip: number;
+  limit: number;
+}
 
 @Injectable()
 export class CoursesService {
@@ -9,8 +14,16 @@ export class CoursesService {
   constructor(private http: Http) {
   }
 
-  getAll(): Observable<Course[]> {
-    return this.http.get('/course')
+  getAll(options: ICourseOptions): Observable<Course[]> {
+
+    let searchParams = new URLSearchParams();
+    if (options) {
+      debugger;
+      searchParams.append('skip', options.skip.toString());
+      searchParams.append('limit', options.limit.toString());
+    }
+
+    return this.http.get('/course', {search: searchParams})
       .map(responce => responce.json())
       .map(courses => courses.map(
         course => new Course(course.id,

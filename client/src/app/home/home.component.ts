@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Course} from "../common/entities/course";
-import {CoursesService} from "./services/courses.service";
+import {CoursesService, ICourseOptions} from "./services/courses.service";
 import {CourseDeleteConfirmationComponent} from "./course-delete-confirmation/course-delete-confirmation.component";
 import {MdDialog} from "@angular/material";
 import {OverlayService} from "../common/components/overlay/overlay-service/overlay-service.service";
@@ -67,7 +67,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    let subscription = this.coursesService.getAll()
+    this.loadCourses();
+  }
+
+  loadCourses(options: ICourseOptions = {skip: 0, limit: 3}) {
+    let subscription = this.coursesService.getAll(options)
       .map((courses) => courses.filter(course => new Date(course.date).getTime() < Date.now() - FORTEEN_DAYS))
       .finally(() => {
         subscription.unsubscribe()
