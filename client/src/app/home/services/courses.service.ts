@@ -6,6 +6,7 @@ import {Http, URLSearchParams} from "@angular/http";
 export interface ICourseOptions {
   skip: number;
   limit: number;
+
 }
 
 @Injectable()
@@ -24,6 +25,19 @@ export class CoursesService {
     }
 
     return this.http.get('/course', {search: searchParams})
+      .map(responce => responce.json())
+      .map(courses => courses.map(
+        course => new Course(course.id,
+          course.name,
+          course.date,
+          course.duration,
+          course.description,
+          course.isTopRated)
+      ));
+  }
+
+  find(title: string): Observable<Course[]> {
+    return this.http.post('/course/find', {where: {name: {contains: title}}})
       .map(responce => responce.json())
       .map(courses => courses.map(
         course => new Course(course.id,

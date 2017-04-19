@@ -14,29 +14,17 @@ const FORTEEN_DAYS: number = 14 * 24 * 60 * 60 * 1000;
   selector: 'trainme-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [CoursesService, FilterByPipe]
+  providers: [CoursesService]
 })
 export class HomeComponent implements OnInit {
-
-  courses: Array<Course> = [];
 
   constructor(private coursesService: CoursesService,
               private overlayServiceService: OverlayService,
               private dialog: MdDialog,
-              private filterByPipe: FilterByPipe,
               private router: Router) {
   }
 
-  searchText: string = '';
-
-  get coursesView(): Array<Course> {
-    if (this.searchText) {
-      let result = <Array<Course>>this.filterByPipe.transform(this.courses, ['title', this.searchText]);
-      debugger;
-      return result;
-    }
-    return this.courses;
-  }
+  courses: Array<Course> = [];
 
   courseDeleteHandler(course: Course) {
     let dialogRef = this.dialog.open(CourseDeleteConfirmationComponent);
@@ -59,7 +47,12 @@ export class HomeComponent implements OnInit {
   }
 
   newSearchText(search) {
-    this.searchText = search;
+    let subscription = this.coursesService.find(search)
+      .map((courses) => courses.filter(course => new Date(course.date).getTime() < Date.now() - FORTEEN_DAYS))
+      .finally(() => {
+        subscription.unsubscribe()
+      })
+      .subscribe(courses => this.courses = courses);
   }
 
   addcourse() {
