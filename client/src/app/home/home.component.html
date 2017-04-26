@@ -1,0 +1,23 @@
+<md-grid-list cols="3" rowHeight="50">
+  <md-grid-tile [colspan]="2">
+    <trainme-search (searchTextOutput)="newSearchText($event)"></trainme-search>
+  </md-grid-tile>
+  <md-grid-tile [colspan]="1">
+    <a md-raised-button (click)="addcourse()">Add course</a>
+  </md-grid-tile>
+</md-grid-list>
+
+<div>
+  <trainme-course-detail
+    *ngFor="let course of courses "
+    [trainmeCourseFresh]="course.date"
+    (deleteCourse)="courseDeleteHandler($event)"
+    [course]="course"></trainme-course-detail>
+</div>
+<md-card *ngIf="courses.length == 0">No data. Feel free to add new course.</md-card>
+<ul class="pagination">
+  <li><a href="#" (click)="loadCourses({skip: 0, limit: 3})">1</a></li>
+  <li><a href="#" (click)="loadCourses({skip: 3, limit: 3})">2</a></li>
+  <li><a href="#" (click)="loadCourses({skip: 6, limit: 3})">3</a></li>
+  <li><a href="#" (click)="loadCourses({skip: 9, limit: 3})">4</a></li>
+</ul>

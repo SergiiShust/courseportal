@@ -1,0 +1,21 @@
+<md-grid-list cols="3">
+  <md-grid-tile>
+  </md-grid-tile>
+  <md-grid-tile>
+    <md-list>
+      <md-list-item>
+        <md-input-container>
+          <input mdInput placeholder="Enter your user email" type="input" [(ngModel)]="email">
+        </md-input-container>
+      </md-list-item>
+      <md-list-item>
+        <md-input-container>
+          <input mdInput placeholder="Enter your password" type="password" [(ngModel)]="password">
+        </md-input-container>
+      </md-list-item>
+      <md-list-item><a md-raised-button (click)="login()">Login</a></md-list-item>
+    </md-list>
+  </md-grid-tile>
+  <md-grid-tile>
+  </md-grid-tile>
+</md-grid-list>
