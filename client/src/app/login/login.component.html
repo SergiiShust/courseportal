@@ -2,19 +2,23 @@
   <md-grid-tile>
   </md-grid-tile>
   <md-grid-tile>
-    <md-list>
-      <md-list-item>
-        <md-input-container>
-          <input mdInput placeholder="Enter your user email" type="input" [(ngModel)]="email">
-        </md-input-container>
-      </md-list-item>
-      <md-list-item>
-        <md-input-container>
-          <input mdInput placeholder="Enter your password" type="password" [(ngModel)]="password">
-        </md-input-container>
-      </md-list-item>
-      <md-list-item><a md-raised-button (click)="login()">Login</a></md-list-item>
-    </md-list>
+    <form [formGroup]="formModel">
+      <md-list>
+        <md-list-item>
+          <md-input-container>
+            <input mdInput placeholder="Enter your user email" type="input" formControlName="email">
+          </md-input-container>
+        </md-list-item>
+        <md-list-item>
+          <md-input-container>
+            <input mdInput placeholder="Enter your password" type="password" formControlName="password">
+          </md-input-container>
+        </md-list-item>
+        <md-list-item>
+          <a [disabled]="formModel.invalid" md-raised-button (click)="login()">Login</a>
+        </md-list-item>
+      </md-list>
+    </form>
   </md-grid-tile>
   <md-grid-tile>
   </md-grid-tile>
