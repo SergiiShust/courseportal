@@ -15,6 +15,7 @@ export class AddCourseComponent implements OnInit {
 
 
   formModel: FormGroup;
+  formData:{} = {};
 
   ngOnInit() {
     this.formModel = this.formBuilder.group({
@@ -26,6 +27,7 @@ export class AddCourseComponent implements OnInit {
   }
 
   save() {
+    this.formData = this.formModel.value;
     console.log('save');
   }
 
