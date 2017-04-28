@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup, Validators, FormControl} from "@angular/forms";
+import {FormGroup, Validators, FormControl, FormBuilder} from "@angular/forms";
+import {dateValidator} from "../common/components/course-date/date-validator";
 
 @Component({
   selector: 'trainme-add-course',
@@ -8,19 +9,20 @@ import {FormGroup, Validators, FormControl} from "@angular/forms";
 })
 export class AddCourseComponent implements OnInit {
 
-  constructor() {
-    this.formModel = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      date: new FormControl('', [Validators.required]),
-      duration: new FormControl('', [Validators.required]),
-    });
+  constructor( private formBuilder:FormBuilder,) {
+
   }
+
 
   formModel: FormGroup;
 
   ngOnInit() {
-
+    this.formModel = this.formBuilder.group({
+      title: ['', [Validators.required, Validators.maxLength(50)]],
+      description:['', [Validators.required, Validators.maxLength(500)]],
+      date: ['', [Validators.required]],
+      duration: ['', [Validators.required]],
+    });
   }
 
   save() {
@@ -29,5 +31,13 @@ export class AddCourseComponent implements OnInit {
 
   cancel() {
     console.log('cancel');
+  }
+
+  hasError(validator, field) {
+    let result = this.formModel ?
+      this.formModel.hasError(validator, [field]) && this.formModel.get(field).dirty :
+      false;
+
+    return result;
   }
 }

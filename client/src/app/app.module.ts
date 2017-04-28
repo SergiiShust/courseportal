@@ -27,6 +27,8 @@ import {FilterByPipe} from "./common/pipes/filter-by.pipe";
 import {AddCourseComponent} from './add-course/add-course.component';
 import {DurationPipe} from "./common/pipes/duration.pipe";
 import {AuthorizedHttpService} from "./common/services/authorize-http.service";
+import { AuthorsListComponent } from './common/components/authors-list/authors-list.component';
+import { CourseDateComponent } from './common/components/course-date/course-date.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import {AuthorizedHttpService} from "./common/services/authorize-http.service";
     OrderByPipe,
     FilterByPipe,
     AddCourseComponent,
+    AuthorsListComponent,
+    CourseDateComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,9 +65,7 @@ import {AuthorizedHttpService} from "./common/services/authorize-http.service";
     OverlayService,
     {
       provide: AuthorizedHttpService,
-      useFactory: (backend: XHRBackend, options: RequestOptions) => {
-        return new AuthorizedHttpService(backend, options);
-      },
+      useFactory: factory,
       deps: [XHRBackend, RequestOptions]
     }
   ],
@@ -71,4 +73,8 @@ import {AuthorizedHttpService} from "./common/services/authorize-http.service";
   entryComponents: [CourseDeleteConfirmationComponent]
 })
 export class AppModule {
+}
+
+export function factory(backend, options){
+  return new AuthorizedHttpService(backend, options);
 }
