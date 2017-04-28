@@ -36,10 +36,13 @@
           <trainme-duration formControlName="duration"></trainme-duration>
           <span class="status-message error-message"
                 *ngIf="hasError('required', 'duration')">Field required</span>
-
         </md-list-item>
         <md-list-item>
-          <trainme-authors-list></trainme-authors-list>
+          <trainme-authors-list [authors]="authors"
+                                formControlName="authors"></trainme-authors-list>
+          <span class="status-message error-message"
+                *ngIf="hasError('empty', 'authors')">Field required</span>
+
         </md-list-item>
         <md-list-item>
           <a md-raised-button [disabled]="formModel?.invalid" (click)="save()">Save</a>
