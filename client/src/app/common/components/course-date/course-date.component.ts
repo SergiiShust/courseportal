@@ -17,15 +17,12 @@ export class CourseDateComponent implements ControlValueAccessor {
   currentValue: string;
 
   setValue(item) {
-    console.log('asdsad')
     this.value = item.target.value;
   }
 
   set value(newValue) {
-    if (newValue) {
-      this.currentValue = newValue;
-      this.onChange(newValue);
-    }
+    this.currentValue = newValue;
+    this.onChange(newValue);
   }
 
   get value() {
@@ -46,6 +43,8 @@ export class CourseDateComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  onChange = (_) => {};
-  onTouched = () => {};
+  onChange = (_) => {
+  };
+  onTouched = () => {
+  };
 }

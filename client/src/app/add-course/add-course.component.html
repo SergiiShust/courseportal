@@ -12,20 +12,31 @@
           </md-input-container>
           <span class="status-message error-message"
                 *ngIf="hasError('required', 'title')">Field required</span>
+          <span class="status-message error-message"
+                *ngIf="hasError('maxlength', 'title')">Max length violated</span>
         </md-list-item>
         <md-list-item>
           <md-input-container>
-            <textarea mdInput type="input" placeholder="Description" formControlName="description"></textarea>
+            <textarea mdInput type="input" placeholder="Description"
+                      formControlName="description"></textarea>
           </md-input-container>
+          <span class="status-message error-message"
+                *ngIf="hasError('required', 'description')">Field required</span>
+          <span class="status-message error-message"
+                *ngIf="hasError('maxlength', 'description')">Max length violated</span>
         </md-list-item>
         <md-list-item>
           <trainme-course-date formControlName="date"></trainme-course-date>
+          <span class="status-message error-message"
+                *ngIf="hasError('required', 'date')">Field required</span>
+          <span class="status-message error-message"
+                *ngIf="hasError('invalidDate', 'date')">Invalid date</span>
         </md-list-item>
         <md-list-item>
-          <md-input-container>
-            <input mdInput type="number" placeholder="Duration {{formModel.controls['duration'].value | duration}}"
-                   formControlName="duration"/>
-          </md-input-container>
+          <trainme-duration formControlName="duration"></trainme-duration>
+          <span class="status-message error-message"
+                *ngIf="hasError('required', 'duration')">Field required</span>
+
         </md-list-item>
         <md-list-item>
           <trainme-authors-list></trainme-authors-list>

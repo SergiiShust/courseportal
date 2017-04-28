@@ -20,8 +20,8 @@ export class AddCourseComponent implements OnInit {
     this.formModel = this.formBuilder.group({
       title: ['', [Validators.required, Validators.maxLength(50)]],
       description:['', [Validators.required, Validators.maxLength(500)]],
-      date: ['', [Validators.required]],
-      duration: ['', [Validators.required]],
+      date: ['', [Validators.required, dateValidator]],
+      duration: [0, [Validators.required]],
     });
   }
 

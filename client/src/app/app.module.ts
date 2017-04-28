@@ -29,6 +29,7 @@ import {DurationPipe} from "./common/pipes/duration.pipe";
 import {AuthorizedHttpService} from "./common/services/authorize-http.service";
 import { AuthorsListComponent } from './common/components/authors-list/authors-list.component';
 import { CourseDateComponent } from './common/components/course-date/course-date.component';
+import { DurationComponent } from './common/components/duration/duration.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { CourseDateComponent } from './common/components/course-date/course-date
     AddCourseComponent,
     AuthorsListComponent,
     CourseDateComponent,
+    DurationComponent,
   ],
   imports: [
     BrowserModule,

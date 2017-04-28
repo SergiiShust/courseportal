@@ -20,7 +20,6 @@ export class CoursesService {
 
     let searchParams = new URLSearchParams();
     if (options) {
-      debugger;
       searchParams.append('skip', options.skip.toString());
       searchParams.append('limit', options.limit.toString());
     }
