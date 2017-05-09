@@ -1,0 +1,8 @@
+<span *ngFor="let item of authors">
+<input
+  type="checkbox"
+  [(ngModel)]="item.checked"
+  (change)="setValue()"
+/>
+  {{item.author.name}}
+</span>

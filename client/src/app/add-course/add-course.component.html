@@ -6,30 +6,56 @@
       <md-list>
         <md-list-item>
           <md-input-container>
-            <input mdInput type="input" placeholder="Title" formControlName="title">
+            <input mdInput type="input" placeholder="Title"
+                   formControlName="title"
+                   />
+            <md-hint class="error"
+                  *ngIf="hasError('required', 'title')">Field required</md-hint>
+            <md-hint class="error"
+                  *ngIf="hasError('maxlength', 'title')">Max length violated</md-hint>
           </md-input-container>
+
         </md-list-item>
         <md-list-item>
           <md-input-container>
-            <textarea mdInput type="input" placeholder="Description" formControlName="description"></textarea>
+            <textarea mdInput type="input" placeholder="Description"
+                      formControlName="description"></textarea>
+            <md-hint class="error"
+                     *ngIf="hasError('required', 'description')">Field required</md-hint>
+            <md-hint class="error"
+                     *ngIf="hasError('maxlength', 'description')">Max length violated</md-hint>
           </md-input-container>
+
         </md-list-item>
         <md-list-item>
-          <md-input-container>
-            <input mdInput type="input" placeholder="Date" formControlName="date"/>
-          </md-input-container>
+          <trainme-course-date formControlName="date"></trainme-course-date>
+          <span class="error"
+                *ngIf="hasError('required', 'date')">Field required</span>
+          <span class="error"
+                *ngIf="hasError('invalidDate', 'date')">Invalid date</span>
         </md-list-item>
         <md-list-item>
-          <md-input-container>
-            <input mdInput type="number" placeholder="Duration {{formModel.controls['duration'].value | duration}}" formControlName="duration"/>
-          </md-input-container>
+          <trainme-duration formControlName="duration"></trainme-duration>
+          <span class="error"
+                *ngIf="hasError('required', 'duration')">Field required</span>
         </md-list-item>
         <md-list-item>
-          <a md-raised-button (click)="save()">Save</a><a md-raised-button (click)="cancel()">Cancel</a>
+          <trainme-authors-list [authors]="authors"
+                                formControlName="authors"></trainme-authors-list>
+          <span class="error"
+                *ngIf="hasError('empty', 'authors')">Field required</span>
+
+        </md-list-item>
+        <md-list-item>
+          <a md-raised-button [disabled]="formModel?.invalid" (click)="save()">Save</a>
+          <a md-raised-button (click)="cancel()">Cancel</a>
         </md-list-item>
       </md-list>
     </form>
   </md-grid-tile>
   <md-grid-tile>
   </md-grid-tile>
+
 </md-grid-list>
+<pre>Valid: {{formModel?.valid}}</pre>
+<pre>{{formModel?.value | json}}</pre>
