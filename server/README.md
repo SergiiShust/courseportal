@@ -1,3 +1,6 @@
-# server
+server: npm run sails
+client: npm run proxy
 
-a [Sails](http://sailsjs.org) application
+login:
+admin@admin.com
+admin
