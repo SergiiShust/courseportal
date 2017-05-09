@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
   }
 
   addcourse() {
-    this.router.navigate(['/addcourse']);
+    this.router.navigate(['/courses/new']);
   }
 
   ngOnInit() {
