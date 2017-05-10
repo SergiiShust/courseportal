@@ -19,17 +19,26 @@ export class AddCourseComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private authorService: AuthorService,
               private courseService: CoursesService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
 
   }
 
-  authors: Array<{ checked: boolean, author: Author }> = [];
+  authors: Array<Author> = [];
   formModel: FormGroup;
   formData: {} = {};
 
   ngOnInit() {
+    this.authorService.getAll()
+      .subscribe((data) => {
+        this.authors = data;
+        this.loadCourseOrCreateNew();
+      })
+  }
+
+  private loadCourseOrCreateNew() {
     let idParam = this.route.snapshot.params['id'];
-    if (idParam !== 'new') {
+    if (idParam) {
       this.courseService
         .getById(idParam)
         .subscribe((course: Course) => {
@@ -38,35 +47,31 @@ export class AddCourseComponent implements OnInit {
     } else {
       this.createForm();
     }
-
-    this.authorService.getAll()
-      .map(authors => {
-        return authors.map((author) => {
-          return {checked: false, author: author}
-        });
-      })
-      .subscribe((data) => {
-        this.authors = data;
-      })
   }
 
   private createForm(course?: Course) {
     this.formModel = this.formBuilder.group({
+      id: [(course ? course.id : null), []],
       title: [course ? course.title : '', [Validators.required, Validators.maxLength(50)]],
       description: [course ? course.description : '', [Validators.required, Validators.maxLength(500)]],
-      date: [course ? course.date : '', [Validators.required, dateValidator]],
+      date: [course ? course.date : '', [Validators.required]],
       duration: [course ? course.duration : 0, [Validators.required]],
       authors: [course ? course.authors : [], [authorNotEmpty]],
     });
   }
 
   save() {
-    this.formData = this.formModel.value;
-    console.log('save');
+    let formData: Course = this.formModel.value as Course;
+    formData.topRated = false;
+    this.courseService
+      .createOrUpdate(formData)
+      .subscribe(() => {
+        this.router.navigate(['/courses']);
+      });
   }
 
   cancel() {
-    console.log('cancel');
+    this.router.navigate(['/courses']);
   }
 
   hasError(validator, field) {

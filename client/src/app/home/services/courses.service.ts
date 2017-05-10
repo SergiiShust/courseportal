@@ -32,7 +32,8 @@ export class CoursesService {
           course.date,
           course.duration,
           course.description,
-          course.isTopRated)
+          course.isTopRated,
+          course.authors)
       ));
   }
 
@@ -44,7 +45,8 @@ export class CoursesService {
         course.date,
         course.duration,
         course.description,
-        course.isTopRated)
+        course.isTopRated,
+        course.authors)
       );
   }
 
@@ -57,7 +59,8 @@ export class CoursesService {
           course.date,
           course.duration,
           course.description,
-          course.isTopRated)
+          course.isTopRated,
+          course.authors)
       ));
   }
 
@@ -66,8 +69,31 @@ export class CoursesService {
       .map(() => course.id)
   }
 
-  save(course: Course): Observable<Course> {
-    return this.http.post('/author', course)
-      .map(responce => responce.json());
+  createOrUpdate(course: Course): Observable<Course> {
+    if (course.id) {
+      return this.http.put(`/course/${course.id}`,
+        {
+          id: course.id,
+          name: course.title,
+          date: course.date,
+          duration: course.duration,
+          description: course.description,
+          authors: course.authors,
+          isTopRated: course.topRated
+        })
+        .map(responce => responce.json());
+    } else {
+      return this.http.post('/course', {
+        name: course.title,
+        date: course.date,
+        duration: course.duration,
+        description: course.description,
+        authors: course.authors,
+        isTopRated: course.topRated
+      })
+        .map(responce => responce.json());
+    }
+
+
   }
 }
