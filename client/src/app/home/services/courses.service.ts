@@ -36,6 +36,18 @@ export class CoursesService {
       ));
   }
 
+  getById(courseId: string): Observable<Course> {
+    return this.http.get(`/course/${courseId}`)
+      .map(responce => responce.json())
+      .map(course => new Course(course.id,
+        course.name,
+        course.date,
+        course.duration,
+        course.description,
+        course.isTopRated)
+      );
+  }
+
   find(title: string): Observable<Course[]> {
     return this.http.post('/course/find', {where: {name: {contains: title}}})
       .map(responce => responce.json())
@@ -52,5 +64,10 @@ export class CoursesService {
   delete(course: Course): Observable<string> {
     return this.http.delete(`/course/${course.id}`)
       .map(() => course.id)
+  }
+
+  save(course: Course): Observable<Course> {
+    return this.http.post('/author', course)
+      .map(responce => responce.json());
   }
 }

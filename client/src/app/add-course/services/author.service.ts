@@ -13,5 +13,4 @@ export class AuthorService {
     return this.http.get('/author')
       .map(responce => responce.json());
   }
-
 }

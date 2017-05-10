@@ -13,7 +13,7 @@
   </md-grid-tile>
   <md-grid-tile [colspan]="1" [rowspan]="2">
     <md-list>
-      <md-list-item><a md-raised-button>Edit course</a></md-list-item>
+      <md-list-item><a md-raised-button (click)="onEditHandler(course)">Edit course</a></md-list-item>
       <md-list-item><a md-raised-button (click)="onDeleteHandler(course)">Delete</a></md-list-item>
     </md-list>
   </md-grid-tile>

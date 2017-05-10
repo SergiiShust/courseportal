@@ -46,6 +46,10 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  courseEditHandler(course: Course) {
+    this.router.navigate([`/courses/${course.id}`]);
+  }
+
   newSearchText(search) {
     let subscription = this.coursesService.find(search)
       .map((courses) => courses.filter(course => new Date(course.date).getTime() < Date.now() - FORTEEN_DAYS))

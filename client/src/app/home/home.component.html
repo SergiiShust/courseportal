@@ -12,6 +12,7 @@
     *ngFor="let course of courses "
     [trainmeCourseFresh]="course.date"
     (deleteCourse)="courseDeleteHandler($event)"
+    (editCourse)="courseEditHandler($event)"
     [course]="course"></trainme-course-detail>
 </div>
 <md-card *ngIf="courses.length == 0">No data. Feel free to add new course.</md-card>
