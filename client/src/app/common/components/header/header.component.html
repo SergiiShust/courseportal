@@ -1,7 +1,9 @@
 <md-toolbar color="primary">
   <div class="logo" ></div>
 
-  <span *ngIf="isAuthenticated">breadcrumbs</span>
+
+  <a routerLink="/courses" *ngIf="isAuthenticated">Courses</a>
+  <p *ngIf="breadCrumb && isAuthenticated"> > {{breadCrumb}} </p>
 
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>

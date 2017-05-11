@@ -7,10 +7,11 @@
 
 module.exports = {
   attributes: {
-    title: {type: 'text',  required: true},
-    date: {type: 'date',  required: true},
-    duration: {type: 'integer',  required: true},
-    topRated: {type: 'boolean',  required: true}
+    name: {type: 'text', required: true},
+    date: {type: 'date', required: true},
+    duration: {type: 'integer', required: true},
+    isTopRated: {type: 'boolean', required: true},
+    authors: {collection: 'Author'}
   }
 };
 

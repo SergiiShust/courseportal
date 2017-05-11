@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         this.overlayService.hide()
       })
       .subscribe(() => {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/courses']);
       });
 
   }

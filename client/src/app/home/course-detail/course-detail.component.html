@@ -1,10 +1,10 @@
-<md-grid-list cols="5" rowHeight="5:1" [ngClass]="{'top-rated-detail': course.topRated}">
+<md-grid-list cols="5" rowHeight="5:1" [ngClass]="{'top-rated-detail': course.isTopRated}">
   <md-grid-tile [colspan]="1">
     <p>{{course?.title | uppercase}}</p>
   </md-grid-tile>
   <md-grid-tile [colspan]="1">
     <p>{{course?.duration | duration}}</p>
-    <p *ngIf="course.topRated">
+    <p *ngIf="course.isTopRated">
       <md-icon>star</md-icon>
     </p>
   </md-grid-tile>
@@ -13,7 +13,7 @@
   </md-grid-tile>
   <md-grid-tile [colspan]="1" [rowspan]="2">
     <md-list>
-      <md-list-item><a md-raised-button>Edit course</a></md-list-item>
+      <md-list-item><a md-raised-button (click)="onEditHandler(course)">Edit course</a></md-list-item>
       <md-list-item><a md-raised-button (click)="onDeleteHandler(course)">Delete</a></md-list-item>
     </md-list>
   </md-grid-tile>

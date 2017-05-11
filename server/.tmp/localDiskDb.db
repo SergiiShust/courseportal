@@ -26,12 +26,12 @@
       {
         "id": 1,
         "createdAt": "2017-04-18T07:38:09.363Z",
-        "updatedAt": "2017-04-18T07:38:09.363Z",
+        "updatedAt": "2017-05-11T21:02:37.513Z",
         "name": "1Community Outreach Specialist",
         "date": "2017-04-01T08:15:30.363Z",
         "duration": 143,
         "description": "Open-architected exuding framework",
-        "isTopRated": true
+        "isTopRated": false
       },
       {
         "id": 2,
@@ -112,6 +112,26 @@
         "duration": 159,
         "description": "Self-enabling full-range instruction set",
         "isTopRated": false
+      },
+      {
+        "name": "sadfasd",
+        "date": "+012320-12-31T22:00:00.000Z",
+        "duration": 23,
+        "description": "sadsadsajkhd",
+        "isTopRated": false,
+        "createdAt": "2017-05-11T21:05:47.968Z",
+        "updatedAt": "2017-05-11T21:05:47.976Z",
+        "id": 10
+      },
+      {
+        "name": "yyyy",
+        "date": "2017-03-01T08:15:30.363Z",
+        "duration": 1212,
+        "description": "yyyyy",
+        "isTopRated": false,
+        "createdAt": "2017-05-11T21:10:17.643Z",
+        "updatedAt": "2017-05-11T21:10:17.659Z",
+        "id": 11
       }
     ],
     "user": [
@@ -122,6 +142,23 @@
         "createdAt": "2017-04-19T21:37:02.113Z",
         "updatedAt": "2017-04-19T21:37:02.113Z",
         "id": 1
+      }
+    ],
+    "author_authors_author__course_authors": [
+      {
+        "author_authors_author": 1,
+        "course_authors": 1,
+        "id": 1
+      },
+      {
+        "author_authors_author": 4,
+        "course_authors": 10,
+        "id": 2
+      },
+      {
+        "author_authors_author": 4,
+        "course_authors": 11,
+        "id": 3
       }
     ]
   },
@@ -144,7 +181,7 @@
       }
     },
     "course": {
-      "title": {
+      "name": {
         "type": "text"
       },
       "date": {
@@ -153,7 +190,7 @@
       "duration": {
         "type": "integer"
       },
-      "topRated": {
+      "isTopRated": {
         "type": "boolean"
       },
       "id": {
@@ -188,17 +225,42 @@
       "updatedAt": {
         "type": "datetime"
       }
+    },
+    "author_authors_author__course_authors": {
+      "id": {
+        "primaryKey": true,
+        "unique": true,
+        "autoIncrement": true,
+        "type": "integer"
+      },
+      "course_authors": {
+        "type": "integer",
+        "foreignKey": true,
+        "references": "course",
+        "on": "id",
+        "via": "author_authors_author"
+      },
+      "author_authors_author": {
+        "type": "integer",
+        "foreignKey": true,
+        "references": "author",
+        "on": "id",
+        "via": "course_authors"
+      }
     }
   },
   "counters": {
     "course": {
-      "id": 9
+      "id": 11
     },
     "user": {
       "id": 1
     },
     "author": {
       "id": 6
+    },
+    "author_authors_author__course_authors": {
+      "id": 3
     }
   }
 }

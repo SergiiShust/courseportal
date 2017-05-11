@@ -30,6 +30,8 @@ import {AuthorizedHttpService} from "./common/services/authorize-http.service";
 import { AuthorsListComponent } from './common/components/authors-list/authors-list.component';
 import { CourseDateComponent } from './common/components/course-date/course-date.component';
 import { DurationComponent } from './common/components/duration/duration.component';
+import {BreadCrumbService} from "./common/services/bread-crumb.service";
+import {AuthGuard} from "./common/services/auth-guard";
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { DurationComponent } from './common/components/duration/duration.compone
   providers: [
     AuthorizationService,
     OverlayService,
+    BreadCrumbService,
+    AuthGuard,
     {
       provide: AuthorizedHttpService,
       useFactory: factory,

@@ -32,8 +32,22 @@ export class CoursesService {
           course.date,
           course.duration,
           course.description,
-          course.isTopRated)
+          course.isTopRated,
+          course.authors)
       ));
+  }
+
+  getById(courseId: string): Observable<Course> {
+    return this.http.get(`/course/${courseId}`)
+      .map(responce => responce.json())
+      .map(course => new Course(course.id,
+        course.name,
+        course.date,
+        course.duration,
+        course.description,
+        course.isTopRated,
+        course.authors)
+      );
   }
 
   find(title: string): Observable<Course[]> {
@@ -45,12 +59,41 @@ export class CoursesService {
           course.date,
           course.duration,
           course.description,
-          course.isTopRated)
+          course.isTopRated,
+          course.authors)
       ));
   }
 
   delete(course: Course): Observable<string> {
     return this.http.delete(`/course/${course.id}`)
       .map(() => course.id)
+  }
+
+  createOrUpdate(course: Course): Observable<Course> {
+    if (course.id) {
+      return this.http.put(`/course/${course.id}`,
+        {
+          id: course.id,
+          name: course.title,
+          date: course.date,
+          duration: course.duration,
+          description: course.description,
+          authors: course.authors,
+          isTopRated: course.isTopRated
+        })
+        .map(responce => responce.json());
+    } else {
+      return this.http.post('/course', {
+        name: course.title,
+        date: course.date,
+        duration: course.duration,
+        description: course.description,
+        authors: course.authors,
+        isTopRated: course.isTopRated
+      })
+        .map(responce => responce.json());
+    }
+
+
   }
 }
