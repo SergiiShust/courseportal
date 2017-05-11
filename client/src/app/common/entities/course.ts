@@ -5,7 +5,7 @@ export class Course {
               public date: string,
               public duration: Number,
               public description: string,
-              public topRated: boolean,
+              public isTopRated: boolean,
               public authors?: Array<Author>) {
   }
 }

@@ -68,7 +68,7 @@ export class AddCourseComponent implements OnInit, OnDestroy {
 
   save() {
     let formData: Course = this.formModel.value as Course;
-    formData.topRated = false;
+    formData.isTopRated = false;
     this.courseService
       .createOrUpdate(formData)
       .subscribe(() => {

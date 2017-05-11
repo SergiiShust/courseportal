@@ -79,7 +79,7 @@ export class CoursesService {
           duration: course.duration,
           description: course.description,
           authors: course.authors,
-          isTopRated: course.topRated
+          isTopRated: course.isTopRated
         })
         .map(responce => responce.json());
     } else {
@@ -89,7 +89,7 @@ export class CoursesService {
         duration: course.duration,
         description: course.description,
         authors: course.authors,
-        isTopRated: course.topRated
+        isTopRated: course.isTopRated
       })
         .map(responce => responce.json());
     }
