@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormGroup, Validators, FormControl, FormBuilder} from "@angular/forms";
 import {dateValidator} from "../common/components/course-date/date-validator";
 import {AuthorService} from "./services/author.service";
@@ -7,6 +7,7 @@ import {authorNotEmpty} from "../common/components/authors-list/author-not-empty
 import {ActivatedRoute, Route, Router} from "@angular/router";
 import {CoursesService} from "../home/services/courses.service";
 import {Course} from "../common/entities/course";
+import {BreadCrumbService} from "../common/services/bread-crumb.service";
 
 @Component({
   selector: 'trainme-add-course',
@@ -14,20 +15,20 @@ import {Course} from "../common/entities/course";
   styleUrls: ['./add-course.component.scss'],
   providers: [AuthorService, CoursesService]
 })
-export class AddCourseComponent implements OnInit {
-
+export class AddCourseComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder,
               private authorService: AuthorService,
               private courseService: CoursesService,
               private route: ActivatedRoute,
+              private breadCrumb: BreadCrumbService,
               private router: Router) {
 
   }
 
   authors: Array<Author> = [];
+
   formModel: FormGroup;
   formData: {} = {};
-
   ngOnInit() {
     this.authorService.getAll()
       .subscribe((data) => {
@@ -36,9 +37,14 @@ export class AddCourseComponent implements OnInit {
       })
   }
 
+  ngOnDestroy(): void {
+    this.breadCrumb.newBreadCrumb.next('');
+  }
+
   private loadCourseOrCreateNew() {
     let idParam = this.route.snapshot.params['id'];
     if (idParam) {
+      this.breadCrumb.newBreadCrumb.next(`Course ${idParam}`);
       this.courseService
         .getById(idParam)
         .subscribe((course: Course) => {
