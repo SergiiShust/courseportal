@@ -1,6 +1,6 @@
 import {Component, OnInit, forwardRef, Input} from '@angular/core';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor} from '@angular/forms';
-import {Author} from "../../entities/author";
+import {Author} from "../../../common/entities/author";
 
 const CUSTOM_ATHOR_LIST_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,

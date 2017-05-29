@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {Course} from "../common/entities/course";
-import {CoursesService, ICourseOptions} from "./services/courses.service";
+import {CoursesService, ICourseOptions} from "../common/services/courses.service";
 import {CourseDeleteConfirmationComponent} from "./course-delete-confirmation/course-delete-confirmation.component";
 import {MdDialog} from "@angular/material";
 import {OverlayService} from "../common/components/overlay/overlay-service/overlay-service.service";

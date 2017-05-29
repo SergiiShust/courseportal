@@ -27,9 +27,9 @@ import {FilterByPipe} from "./common/pipes/filter-by.pipe";
 import {AddCourseComponent} from './add-course/add-course.component';
 import {DurationPipe} from "./common/pipes/duration.pipe";
 import {AuthorizedHttpService} from "./common/services/authorize-http.service";
-import { AuthorsListComponent } from './common/components/authors-list/authors-list.component';
-import { CourseDateComponent } from './common/components/course-date/course-date.component';
-import { DurationComponent } from './common/components/duration/duration.component';
+import { AuthorsListComponent } from './add-course/components/authors-list/authors-list.component';
+import { CourseDateComponent } from './add-course/components/course-date/course-date.component';
+import { DurationComponent } from './add-course/components/duration/duration.component';
 import {BreadCrumbService} from "./common/services/bread-crumb.service";
 import {AuthGuard} from "./common/services/auth-guard";
 
