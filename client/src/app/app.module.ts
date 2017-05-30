@@ -27,11 +27,13 @@ import {FilterByPipe} from "./common/pipes/filter-by.pipe";
 import {AddCourseComponent} from './add-course/add-course.component';
 import {DurationPipe} from "./common/pipes/duration.pipe";
 import {AuthorizedHttpService} from "./common/services/authorize-http.service";
-import { AuthorsListComponent } from './add-course/components/authors-list/authors-list.component';
-import { CourseDateComponent } from './add-course/components/course-date/course-date.component';
-import { DurationComponent } from './add-course/components/duration/duration.component';
+import {AuthorsListComponent} from './add-course/components/authors-list/authors-list.component';
+import {CourseDateComponent} from './add-course/components/course-date/course-date.component';
+import {DurationComponent} from './add-course/components/duration/duration.component';
 import {BreadCrumbService} from "./common/services/bread-crumb.service";
 import {AuthGuard} from "./common/services/auth-guard";
+import {reducer} from "./redux/reducers";
+import {StoreModule} from '@ngrx/store';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import {AuthGuard} from "./common/services/auth-guard";
     HttpModule,
     RouterModule.forRoot(ROUTES, {useHash: true, preloadingStrategy: PreloadAllModules}),
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.provideStore(reducer)
   ],
   providers: [
     AuthorizationService,
@@ -81,6 +84,6 @@ import {AuthGuard} from "./common/services/auth-guard";
 export class AppModule {
 }
 
-export function factory(backend, options){
+export function factory(backend, options) {
   return new AuthorizedHttpService(backend, options);
 }
