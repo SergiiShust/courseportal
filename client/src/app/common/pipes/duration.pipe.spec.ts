@@ -1,6 +1,6 @@
 import { DurationPipe } from './duration.pipe';
 
-fdescribe('DurationPipe', () => {
+describe('DurationPipe', () => {
   it('should 59 be "59 min"', () => {
     const pipe = new DurationPipe();
     expect(pipe.transform(59)).toBe('59 min');
