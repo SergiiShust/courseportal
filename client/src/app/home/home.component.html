@@ -9,7 +9,7 @@
 
 <div>
   <trainme-course-detail
-    *ngFor="let course of courses$ | async"
+    *ngFor="let course of (courses$ | async)"
     [trainmeCourseFresh]="course.date"
     (deleteCourse)="courseDeleteHandler($event)"
     (editCourse)="courseEditHandler($event)"

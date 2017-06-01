@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
               this.overlayServiceService.hide();
             })
             .subscribe(() => {
-              //  this.courses.splice(this.courses.indexOf(course), 1);
+              this.store.dispatch(new coursesAction.DeletedAction(course));
             });
         }
       });

@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
       .do(() => {
         this.overlayService.show();
       })
-      .delay(10000)
+      .delay(1000)
       .finally(() => {
-        this.overlayService.hide()
+        this.overlayService.hide();
       })
       .subscribe((user) => {
         this.store.dispatch(new login.LoginAction(user));
