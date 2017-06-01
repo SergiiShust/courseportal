@@ -5,6 +5,10 @@ import {CourseDeleteConfirmationComponent} from "./course-delete-confirmation/co
 import {MdDialog} from "@angular/material";
 import {OverlayService} from "../common/components/overlay/overlay-service/overlay-service.service";
 import {Router} from "@angular/router";
+import {Observable} from "rxjs/Observable";
+import {Store} from "@ngrx/store";
+import * as fromRoot from "../redux/reducers" ;
+import * as coursesAction from "../redux/actions/courses" ;
 
 const FORTEEN_DAYS: number = 14 * 24 * 60 * 60 * 1000;
 
@@ -19,10 +23,12 @@ export class HomeComponent implements OnInit {
   constructor(private coursesService: CoursesService,
               private overlayServiceService: OverlayService,
               private dialog: MdDialog,
-              private router: Router) {
+              private router: Router,
+              private store: Store<fromRoot.State>) {
+    this.courses$ = store.select(fromRoot.getCourses);
   }
 
-  courses: Array<Course> = [];
+  courses$: Observable<Course[]>;
 
   courseDeleteHandler(course: Course) {
     let dialogRef = this.dialog.open(CourseDeleteConfirmationComponent);
@@ -35,10 +41,10 @@ export class HomeComponent implements OnInit {
             .delete(course)
             .finally(() => {
               subscription.unsubscribe();
-              this.overlayServiceService.hide()
+              this.overlayServiceService.hide();
             })
             .subscribe(() => {
-              this.courses.splice(this.courses.indexOf(course), 1)
+              //  this.courses.splice(this.courses.indexOf(course), 1);
             });
         }
       });
@@ -52,9 +58,11 @@ export class HomeComponent implements OnInit {
     let subscription = this.coursesService.find(search)
       .map((courses) => courses.filter(course => new Date(course.date).getTime() < Date.now() - FORTEEN_DAYS))
       .finally(() => {
-        subscription.unsubscribe()
+        subscription.unsubscribe();
       })
-      .subscribe(courses => this.courses = courses);
+      .subscribe(courses => {
+        this.store.dispatch(new coursesAction.LoadCompletedAction(courses));
+      });
   }
 
   addcourse() {
@@ -69,8 +77,10 @@ export class HomeComponent implements OnInit {
     let subscription = this.coursesService.getAll(options)
       .map((courses) => courses.filter(course => new Date(course.date).getTime() < Date.now() - FORTEEN_DAYS))
       .finally(() => {
-        subscription.unsubscribe()
+        subscription.unsubscribe();
       })
-      .subscribe(courses => this.courses = courses);
+      .subscribe(courses => {
+        this.store.dispatch(new coursesAction.LoadCompletedAction(courses));
+      });
   }
 }
