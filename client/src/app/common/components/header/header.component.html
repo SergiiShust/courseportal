@@ -4,7 +4,7 @@
 
   <a routerLink="/courses" *ngIf="isAuthenticated$ | async">Courses</a>
 
-  <p *ngIf="breadCrumb && isAuthenticated"> > {{breadCrumb}} </p>
+  <p *ngIf="breadCrumb && isAuthenticated$ | async"> > {{breadCrumb}} </p>
 
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>

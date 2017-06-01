@@ -1,4 +1,4 @@
-<p *ngIf="isAuthenticated$ | async">
+<p *ngIf="!(isAuthenticated$ | async)">
   <a md-button [routerLink]="['login']">login</a>
 </p>
 <p *ngIf="isAuthenticated$ | async">
