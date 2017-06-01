@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormGroup, Validators, FormControl, FormBuilder} from "@angular/forms";
-import {dateValidator} from "../common/components/course-date/date-validator";
+import {dateValidator} from "./components/course-date/date-validator";
 import {AuthorService} from "./services/author.service";
 import {Author} from "../common/entities/author";
-import {authorNotEmpty} from "../common/components/authors-list/author-not-empty-validator";
+import {authorNotEmpty} from "./components/authors-list/author-not-empty-validator";
 import {ActivatedRoute, Route, Router} from "@angular/router";
-import {CoursesService} from "../home/services/courses.service";
+import {CoursesService} from "../common/services/courses.service";
 import {Course} from "../common/entities/course";
 import {BreadCrumbService} from "../common/services/bread-crumb.service";
 

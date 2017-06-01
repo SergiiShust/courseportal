@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Course} from "../../common/entities/course";
+import {Course} from "../entities/course";
 import {Observable} from "rxjs";
 import {Http, URLSearchParams} from "@angular/http";
-import {AuthorizedHttpService} from "../../common/services/authorize-http.service";
+import {AuthorizedHttpService} from "./authorize-http.service";
 
 export interface ICourseOptions {
   skip: number;

@@ -9,13 +9,13 @@
 
 <div>
   <trainme-course-detail
-    *ngFor="let course of courses "
+    *ngFor="let course of (courses$ | async)"
     [trainmeCourseFresh]="course.date"
     (deleteCourse)="courseDeleteHandler($event)"
     (editCourse)="courseEditHandler($event)"
     [course]="course"></trainme-course-detail>
 </div>
-<md-card *ngIf="courses.length == 0">No data. Feel free to add new course.</md-card>
+<md-card *ngIf="(courses$ | async).length == 0">No data. Feel free to add new course.</md-card>
 <ul class="pagination">
   <li><a href="#" (click)="loadCourses({skip: 0, limit: 3})">1</a></li>
   <li><a href="#" (click)="loadCourses({skip: 3, limit: 3})">2</a></li>
