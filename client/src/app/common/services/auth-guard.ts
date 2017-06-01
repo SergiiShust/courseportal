@@ -1,12 +1,14 @@
 import {Injectable}     from '@angular/core';
 import {CanActivate}    from '@angular/router';
-import {AuthorizationService} from "./authorization.service";
+import {Store} from "@ngrx/store";
+import * as fromRoot from "../../redux/reducers" ;
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private authorizationService: AuthorizationService){}
+  constructor(private store: Store<fromRoot.State>) {
+  }
 
   canActivate() {
-    return this.authorizationService.isAuthenticated();
+    return this.store.select(fromRoot.getLoginIsAuthenticated);
   }
 }

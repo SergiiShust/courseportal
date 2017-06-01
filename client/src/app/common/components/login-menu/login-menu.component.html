@@ -1,6 +1,6 @@
-<p *ngIf="!isAuthenticated">
+<p *ngIf="isAuthenticated$ | async">
   <a md-button [routerLink]="['login']">login</a>
 </p>
-<p *ngIf="isAuthenticated">
+<p *ngIf="isAuthenticated$ | async">
   <a (click)="logout()" md-button routerLink=".">log-off</a>
 </p>

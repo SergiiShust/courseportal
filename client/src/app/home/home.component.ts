@@ -1,11 +1,9 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Course} from "../common/entities/course";
 import {CoursesService, ICourseOptions} from "../common/services/courses.service";
 import {CourseDeleteConfirmationComponent} from "./course-delete-confirmation/course-delete-confirmation.component";
 import {MdDialog} from "@angular/material";
 import {OverlayService} from "../common/components/overlay/overlay-service/overlay-service.service";
-import {FilterByPipe} from "../common/pipes/filter-by.pipe";
-import * as moment from 'moment';
 import {Router} from "@angular/router";
 
 const FORTEEN_DAYS: number = 14 * 24 * 60 * 60 * 1000;

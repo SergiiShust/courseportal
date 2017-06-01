@@ -34,6 +34,7 @@ import {BreadCrumbService} from "./common/services/bread-crumb.service";
 import {AuthGuard} from "./common/services/auth-guard";
 import {reducer} from "./redux/reducers";
 import {StoreModule} from '@ngrx/store';
+import { RouterStoreModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -62,10 +63,12 @@ import {StoreModule} from '@ngrx/store';
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, {useHash: true, preloadingStrategy: PreloadAllModules}),
     MaterialModule,
     ReactiveFormsModule,
-    StoreModule.provideStore(reducer)
+
+    RouterModule.forRoot(ROUTES, {useHash: true, preloadingStrategy: PreloadAllModules}),
+    StoreModule.provideStore(reducer),
+   // RouterStoreModule.connectRouter(),
   ],
   providers: [
     AuthorizationService,

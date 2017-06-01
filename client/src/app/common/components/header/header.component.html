@@ -2,7 +2,8 @@
   <div class="logo" ></div>
 
 
-  <a routerLink="/courses" *ngIf="isAuthenticated">Courses</a>
+  <a routerLink="/courses" *ngIf="isAuthenticated$ | async">Courses</a>
+
   <p *ngIf="breadCrumb && isAuthenticated"> > {{breadCrumb}} </p>
 
   <!-- This fills the remaining space of the current row -->
